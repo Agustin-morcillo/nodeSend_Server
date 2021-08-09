@@ -17,5 +17,11 @@ const dbConection = require("./config/db")
 dbConection()
 
 /* Required routes */
+const apiUsersRouter = require("./routes/usersRoute")
 
 /* Routes */
+app.use("/api/users", apiUsersRouter)
+
+app.use("/", function (req, res) {
+  return res.send("Back-end de la aplicación")
+})
