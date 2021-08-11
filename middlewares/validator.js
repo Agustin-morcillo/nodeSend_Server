@@ -43,6 +43,9 @@ const validator = {
         }
       }),
   ],
+  newLink: [
+    body("fileOriginalName").notEmpty().withMessage("Debes subir un archivo"),
+  ],
 }
 
 module.exports = validator

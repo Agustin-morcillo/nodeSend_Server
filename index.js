@@ -18,6 +18,8 @@ dbConection()
 
 /* Required routes */
 const apiUsersRouter = require("./routes/usersRoute")
+const apiLinksRouter = require("./routes/linksRoute")
 
 /* Routes */
 app.use("/api/users", apiUsersRouter)
+app.use("/api/links", apiLinksRouter)
