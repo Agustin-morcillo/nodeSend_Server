@@ -57,6 +57,16 @@ const linksController = {
       return res.status(500).send("Hubo un error")
     }
   },
+  getLink: async (req, res) => {
+    const { url } = req.params
+    const link = await Link.findOne({ url })
+
+    if (!link) {
+      return res.status(404).send({ msg: "URL inválida" })
+    }
+
+    return res.send({ file: link.fileName })
+  },
 }
 
 module.exports = linksController

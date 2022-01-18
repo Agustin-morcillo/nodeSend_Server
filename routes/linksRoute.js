@@ -18,4 +18,6 @@ router.post(
   linksController.newRegisteredLink
 )
 
+router.get("/:url", linksController.getLink)
+
 module.exports = router
