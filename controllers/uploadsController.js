@@ -1,4 +1,5 @@
 const multer = require("multer")
+const fs = require("fs")
 
 const uploadsController = {
   upload: async (req, res) => {
@@ -23,6 +24,13 @@ const uploadsController = {
       }
       return res.send(req.file)
     })
+  },
+  delete: async (req, res) => {
+    try {
+      fs.unlinkSync(__dirname + `/../uploads/${req.file}`)
+    } catch (error) {
+      console.error(error)
+    }
   },
 }
 
