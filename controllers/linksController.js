@@ -57,15 +57,36 @@ const linksController = {
       return res.status(500).send("Hubo un error")
     }
   },
-  getLink: async (req, res) => {
-    const { url } = req.params
-    const link = await Link.findOne({ url })
+  getLink: async (req, res, next) => {
+    const { fileURL } = req.params
+    const link = await Link.findOne({ url: fileURL })
 
     if (!link) {
-      return res.status(404).send({ msg: "URL inválida" })
+      return res.status(404).send({ msg: "URL inexistente" })
     }
 
-    return res.send({ file: link.fileName })
+    const { downloads, fileName } = link
+
+    res.send({ file: fileName })
+
+    if (downloads === 1) {
+      req.file = fileName
+
+      try {
+        await Link.findOneAndRemove(fileURL)
+      } catch (error) {
+        console.error(error)
+      }
+      
+      next()
+    } else {
+      try {
+        link.downloads--
+        await link.save()
+      } catch (error) {
+        console.error(error)
+      }
+    }
   },
 }
 
