@@ -1,5 +1,5 @@
 {
-  "name": "nodesend",
+  "name": "nodesend-server",
   "version": "1.0.0",
   "description": "carga y descarga de archivos",
   "main": "index.js",
