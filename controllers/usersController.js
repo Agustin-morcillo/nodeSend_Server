@@ -21,7 +21,7 @@ const usersController = {
       })
       await user.save()
 
-      return res.send("Usuario creado exitosamente")
+      return res.send({ msg: "Usuario creado exitosamente" })
     } catch (error) {
       console.error(error)
       return res.status(500).send("Hubo un error")
