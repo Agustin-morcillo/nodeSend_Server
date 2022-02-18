@@ -40,11 +40,26 @@ const usersController = {
         expiresIn: 3600,
       })
 
-      res.send({ msg: "Login exitoso", token })
+      return res.send({ msg: "Login exitoso", token })
     } catch (error) {
       console.error(error)
       return res.status(500).send("Hubo un error")
     }
   },
+  userAuth: async (req, res) => {
+    try {
+      const user = await User.findOne({ _id: req.user })
+
+      return res.send({
+        user: {
+          name: user.name,
+          email: user.email
+        }
+      })
+    } catch (error) {
+      console.error(error)
+      return res.status(500).send("Hubo un error")
+    }
+  }
 }
 module.exports = usersController

@@ -27,9 +27,9 @@ const uploadsController = {
   },
   delete: async (req, res) => {
     try {
-      fs.unlinkSync(__dirname + `/../uploads/${req.file}`)
+      return fs.unlinkSync(__dirname + `/../uploads/${req.file}`)
     } catch (error) {
-      console.error(error)
+      return console.error(error)
     }
   },
 }

@@ -76,15 +76,17 @@ const linksController = {
         await Link.findOneAndRemove(fileURL)
       } catch (error) {
         console.error(error)
+        return res.status(500).send("Hubo un error")
       }
-      
-      next()
+
+      return next()
     } else {
       try {
         link.downloads--
-        await link.save()
+        return await link.save()
       } catch (error) {
         console.error(error)
+        return res.status(500).send("Hubo un error")
       }
     }
   },
